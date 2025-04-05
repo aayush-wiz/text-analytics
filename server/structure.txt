@@ -1,0 +1,43 @@
+# Predictive Text Analysis Tool - Backend Structure
+
+```
+/text-analysis-backend/
+├── config/
+│   ├── db.js                 # Database connection configuration
+│   └── config.js             # Application configuration
+├── controllers/
+│   ├── authController.js     # Authentication controller
+│   ├── textController.js     # Text analysis controller
+│   ├── userController.js     # User management controller
+│   └── modelController.js    # ML model management controller
+├── middleware/
+│   ├── auth.js               # Authentication middleware
+│   ├── errorHandler.js       # Error handling middleware
+│   └── validators.js         # Input validation middleware
+├── models/
+│   ├── User.js               # User model
+│   ├── TextDocument.js       # Text document model
+│   ├── AnalysisResult.js     # Analysis results model
+│   └── Model.js              # ML model metadata
+├── routes/
+│   ├── authRoutes.js         # Authentication routes
+│   ├── textRoutes.js         # Text analysis routes
+│   ├── userRoutes.js         # User management routes
+│   └── modelRoutes.js        # ML model routes
+├── services/
+│   ├── textAnalysis.js       # Text analysis service
+│   ├── nlpService.js         # NLP processing service
+│   └── statsService.js       # Statistical analysis service
+├── utils/
+│   ├── logger.js             # Logging utility
+│   ├── tokenizer.js          # Text tokenization utility
+│   └── responseFormatter.js  # API response formatter
+├── tests/
+│   ├── unit/                 # Unit tests
+│   └── integration/          # Integration tests
+├── .env                      # Environment variables
+├── .gitignore                # Git ignore file
+├── package.json              # Project dependencies
+├── server.js                 # Application entry point
+└── README.md                 # Project documentation
+```
