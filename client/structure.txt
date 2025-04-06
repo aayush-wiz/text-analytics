@@ -1,0 +1,92 @@
+// Project Structure for Predictive Text Analysis Tool Frontend
+
+textanalytics-frontend/
+├── .env                       // Environment variables
+├── .gitignore                 // Git ignore file
+├── index.html                 // Entry HTML file
+├── package.json               // Project dependencies and scripts
+├── tsconfig.json              // TypeScript configuration
+├── vite.config.ts             // Vite configuration
+├── tailwind.config.js         // Tailwind CSS configuration
+├── postcss.config.js          // PostCSS configuration
+├── README.md                  // Project documentation
+└── src/                       // Source code
+    ├── main.tsx               // Entry point
+    ├── App.tsx                // Main application component
+    ├── vite-env.d.ts          // Vite environment declarations
+    ├── assets/                // Static assets
+    │   ├── images/            // Image files
+    │   └── styles/            // Global styles
+    │       └── index.css      // Main CSS file with Tailwind imports
+    ├── components/            // Reusable UI components
+    │   ├── common/            // Shared components
+    │   │   ├── Button.tsx
+    │   │   ├── Card.tsx
+    │   │   ├── Input.tsx
+    │   │   ├── Modal.tsx
+    │   │   ├── Navbar.tsx
+    │   │   ├── Sidebar.tsx
+    │   │   ├── Table.tsx
+    │   │   └── Loading.tsx
+    │   ├── auth/              // Authentication components
+    │   │   ├── LoginForm.tsx
+    │   │   └── RegisterForm.tsx
+    │   ├── dashboard/         // Dashboard components
+    │   │   ├── AnalyticsOverview.tsx
+    │   │   ├── RecentDocuments.tsx
+    │   │   └── UserStats.tsx
+    │   ├── documents/         // Document management components
+    │   │   ├── DocumentCard.tsx
+    │   │   ├── DocumentList.tsx
+    │   │   ├── DocumentUpload.tsx
+    │   │   └── DocumentEditor.tsx
+    │   └── analysis/          // Analysis components
+    │       ├── AnalysisForm.tsx
+    │       ├── AnalysisResults.tsx
+    │       ├── SentimentDisplay.tsx
+    │       ├── KeywordsList.tsx
+    │       ├── EntityRecognition.tsx
+    │       └── TextSummary.tsx
+    ├── pages/                 // Page components
+    │   ├── HomePage.tsx
+    │   ├── LoginPage.tsx
+    │   ├── RegisterPage.tsx
+    │   ├── DashboardPage.tsx
+    │   ├── DocumentsPage.tsx
+    │   ├── DocumentDetailPage.tsx
+    │   ├── AnalysisPage.tsx
+    │   ├── ResultsPage.tsx
+    │   ├── ProfilePage.tsx
+    │   ├── SettingsPage.tsx
+    │   └── NotFoundPage.tsx
+    ├── context/               // React Context
+    │   ├── AuthContext.tsx
+    │   └── ThemeContext.tsx
+    ├── hooks/                 // Custom React hooks
+    │   ├── useAuth.ts
+    │   ├── useDocuments.ts
+    │   ├── useAnalysis.ts
+    │   └── useLocalStorage.ts
+    ├── services/              // API services
+    │   ├── api.ts             // Base API configuration
+    │   ├── authService.ts     // Authentication API
+    │   ├── documentService.ts // Document API
+    │   ├── analysisService.ts // Analysis API
+    │   └── modelService.ts    // Models API
+    ├── store/                 // State management (Redux if used)
+    │   ├── index.ts
+    │   ├── auth/
+    │   ├── documents/
+    │   └── analysis/
+    ├── types/                 // TypeScript type definitions
+    │   ├── auth.types.ts
+    │   ├── document.types.ts
+    │   ├── analysis.types.ts
+    │   └── model.types.ts
+    ├── utils/                 // Utility functions
+    │   ├── formatters.ts
+    │   ├── validators.ts
+    │   ├── helpers.ts
+    │   └── constants.ts
+    └── routes/                // Route definitions
+        └── index.tsx

@@ -18,7 +18,14 @@ connectDB();
 // Middleware
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+// Configure CORS for credentials
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Logging middleware
 if (process.env.NODE_ENV === "development") {
