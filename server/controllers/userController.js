@@ -169,7 +169,7 @@ exports.deleteUser = async (req, res, next) => {
     await AnalysisResult.deleteMany({ user: req.params.id });
 
     // Delete user
-    await user.remove();
+    await User.findByIdAndDelete(req.params.id);
 
     success(res, 200, "User deleted successfully");
   } catch (err) {

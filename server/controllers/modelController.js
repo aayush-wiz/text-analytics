@@ -151,7 +151,7 @@ exports.deleteModel = async (req, res, next) => {
     // In a real application, you would check references in the AnalysisResult collection
 
     // Delete model
-    await model.remove();
+    await Model.findByIdAndDelete(req.params.id);
 
     success(res, 200, "Model deleted successfully");
   } catch (err) {
