@@ -148,11 +148,11 @@ export const RegisterForm: React.FC = () => {
       </Button>
 
       <div className="text-center">
-        <span className="text-sm text-gray-600 dark:text-gray-400">
+        <span className="text-sm text-notion-text-gray">
           Already have an account?{" "}
           <a
             href="/login"
-            className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+            className="font-medium text-[#37352f] hover:text-black underline"
           >
             Sign in
           </a>

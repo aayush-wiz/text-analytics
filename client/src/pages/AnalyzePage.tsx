@@ -77,16 +77,16 @@ const AnalyzePage: React.FC = () => {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900 ">
           Analyze Document
         </h1>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-1 text-sm text-gray-600 ">
           {document.title}
         </p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 p-4 rounded-md shadow-sm mb-6 overflow-auto max-h-60">
-        <p className="text-gray-800 dark:text-gray-200 whitespace-pre-line">
+      <div className="bg-white  p-4 rounded-md shadow-sm mb-6 overflow-auto max-h-60">
+        <p className="text-gray-800  whitespace-pre-line">
           {document.content.substring(0, 500)}
           {document.content.length > 500 && "..."}
         </p>

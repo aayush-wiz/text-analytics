@@ -167,7 +167,7 @@ export const AnalysisForm: React.FC<AnalysisFormProps> = ({
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-medium text-gray-900  mb-2">
                 What to analyze
               </h3>
               <div className="space-y-4">

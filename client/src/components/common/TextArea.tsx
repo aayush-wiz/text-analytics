@@ -24,7 +24,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       {label && (
         <label
           htmlFor={textAreaId}
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          className="block text-sm font-medium text-[#37352f] mb-1"
         >
           {label}
         </label>
@@ -33,7 +33,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
         id={textAreaId}
         rows={rows}
         className={twMerge(
-          "shadow-sm rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:ring-blue-500 focus:border-blue-500",
+          "px-3 py-2 w-full text-[#37352f] bg-white border border-[#e4e5e7] rounded-md hover:border-[#b8b7b4] focus:border-[#000000] focus:ring-1 focus:ring-[#000000] outline-none transition duration-150 ease-in-out",
           error ? "border-red-500 focus:ring-red-500 focus:border-red-500" : "",
           widthClass,
           className
@@ -41,7 +41,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
         {...props}
       />
       {error && (
-        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>
+        <p className="mt-1 text-sm text-red-600">{error}</p>
       )}
     </div>
   );

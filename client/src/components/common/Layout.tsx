@@ -37,7 +37,7 @@ export const Layout: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+    <div className="flex h-screen bg-notion-default overflow-hidden">
       {/* Desktop Sidebar */}
       <div 
         className={`hidden md:block transition-all duration-300 ${
@@ -50,8 +50,8 @@ export const Layout: React.FC = () => {
       {/* Mobile Sidebar - shown as overlay */}
       {mobileSidebarOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={toggleMobileSidebar}></div>
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white dark:bg-gray-800 h-full">
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50" onClick={toggleMobileSidebar}></div>
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-notion-default h-full border-r border-notion-border">
             <Sidebar isOpen={true} onToggle={toggleMobileSidebar} isMobile={true} />
           </div>
         </div>

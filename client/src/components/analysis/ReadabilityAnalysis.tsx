@@ -13,10 +13,10 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
   const getScoreColorClass = (): string => {
     const score = data.score;
 
-    if (score >= 90) return "text-green-600 dark:text-green-400";
-    if (score >= 70) return "text-blue-600 dark:text-blue-400";
-    if (score >= 50) return "text-yellow-600 dark:text-yellow-400";
-    return "text-red-600 dark:text-red-400";
+    if (score >= 90) return "text-green-600 ";
+    if (score >= 70) return "text-blue-600 ";
+    if (score >= 50) return "text-yellow-600 ";
+    return "text-red-600 ";
   };
 
   // Helper to get readability level description
@@ -50,7 +50,7 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
                   fill="none"
                   stroke="#e5e7eb"
                   strokeWidth="8"
-                  className="dark:stroke-gray-700"
+                  className=""
                 />
                 {/* Progress circle */}
                 <circle
@@ -71,37 +71,37 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
                 <span className={`text-4xl font-bold ${getScoreColorClass()}`}>
                   {data.score}
                 </span>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-gray-600 ">
                   {getReadabilityDescription()}
                 </span>
               </div>
             </div>
 
             <div className="text-center">
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+              <p className="text-sm text-gray-600  mb-2">
                 Reading Grade Level
               </p>
-              <span className="text-xl font-semibold text-gray-900 dark:text-white">
+              <span className="text-xl font-semibold text-gray-900 ">
                 {data.grade}
               </span>
             </div>
           </div>
 
           <div>
-            <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+            <h4 className="text-lg font-medium text-gray-900  mb-4">
               Text Metrics
             </h4>
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-gray-600 dark:text-gray-400">
+                  <span className="text-gray-600 ">
                     Sentences
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-gray-900 ">
                     {data.metrics.sentenceCount}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div className="w-full bg-gray-200 rounded-full h-2.5 ">
                   <div
                     className="bg-blue-600 h-2.5 rounded-full"
                     style={{
@@ -113,14 +113,14 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
 
               <div>
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-gray-600 dark:text-gray-400">
+                  <span className="text-gray-600 ">
                     Words
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-gray-900 ">
                     {data.metrics.wordCount}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div className="w-full bg-gray-200 rounded-full h-2.5 ">
                   <div
                     className="bg-blue-600 h-2.5 rounded-full"
                     style={{
@@ -132,14 +132,14 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
 
               <div>
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-gray-600 dark:text-gray-400">
+                  <span className="text-gray-600 ">
                     Words per Sentence
                   </span>
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-gray-900 ">
                     {data.metrics.averageSentenceLength.toFixed(1)}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div className="w-full bg-gray-200 rounded-full h-2.5 ">
                   <div
                     className="bg-blue-600 h-2.5 rounded-full"
                     style={{
@@ -152,10 +152,10 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
               {data.metrics.syllableCount && (
                 <div>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-600 dark:text-gray-400">
+                    <span className="text-gray-600 ">
                       Syllables
                     </span>
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-gray-900 ">
                       {data.metrics.syllableCount}
                     </span>
                   </div>
@@ -165,14 +165,14 @@ export const ReadabilityAnalysis: React.FC<ReadabilityAnalysisProps> = ({
               {data.metrics.complexWordCount && (
                 <div>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-600 dark:text-gray-400">
+                    <span className="text-gray-600 ">
                       Complex Words
                     </span>
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-gray-900 ">
                       {data.metrics.complexWordCount}
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 ">
                     <div
                       className="bg-blue-600 h-2.5 rounded-full"
                       style={{

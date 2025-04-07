@@ -1,6 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -12,20 +12,20 @@ interface NavItem {
   name: string;
   to: string;
   icon: React.ReactNode;
-  requiredRole?: "user" | "admin";
+  requiredRole?: 'user' | 'admin';
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ 
-  isOpen, 
+export const Sidebar: React.FC<SidebarProps> = ({
+  isOpen,
   onToggle,
-  isMobile = false 
+  isMobile = false,
 }) => {
   const { authState } = useAuth();
 
   const navItems: NavItem[] = [
     {
-      name: "Dashboard",
-      to: "/dashboard",
+      name: 'Dashboard',
+      to: '/dashboard',
       icon: (
         <svg
           className="w-5 h-5"
@@ -62,8 +62,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ),
     },
     {
-      name: "Documents",
-      to: "/documents",
+      name: 'Documents',
+      to: '/documents',
       icon: (
         <svg
           className="w-5 h-5"
@@ -82,8 +82,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ),
     },
     {
-      name: "Analysis",
-      to: "/analysis",
+      name: 'Analysis',
+      to: '/analysis',
       icon: (
         <svg
           className="w-6 h-6"
@@ -102,8 +102,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ),
     },
     {
-      name: "Models",
-      to: "/models",
+      name: 'Models',
+      to: '/models',
       icon: (
         <svg
           className="w-6 h-6"
@@ -122,8 +122,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ),
     },
     {
-      name: "Users",
-      to: "/users",
+      name: 'Users',
+      to: '/users',
       icon: (
         <svg
           className="w-6 h-6"
@@ -140,11 +140,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
           />
         </svg>
       ),
-      requiredRole: "admin",
+      requiredRole: 'admin',
     },
     {
-      name: "Settings",
-      to: "/settings",
+      name: 'Settings',
+      to: '/settings',
       icon: (
         <svg
           className="w-6 h-6"
@@ -177,34 +177,62 @@ export const Sidebar: React.FC<SidebarProps> = ({
   });
 
   return (
-    <aside className="h-full flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
+    <aside className="h-full flex flex-col bg-notion-default border-r border-notion-border">
       {/* Sidebar header */}
-      <div className={`flex h-16 items-center justify-between px-4 ${!isOpen && !isMobile ? 'justify-center' : ''}`}>
+      <div
+        className={`flex h-16 items-center justify-between px-4 ${!isOpen && !isMobile ? 'justify-center' : ''}`}
+      >
         {(isOpen || isMobile) && (
-          <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400">TextAnalytics</h1>
+          <NavLink
+            to="/dashboard"
+            className="text-xl font-bold text-[#37352f] hover:opacity-80 transition-opacity"
+          >
+            TextAnalytics
+          </NavLink>
         )}
-        <button 
+        <button
           onClick={onToggle}
-          className="p-1 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="p-1 rounded-md text-notion-text-gray hover:text-notion-text-default hover:bg-notion-hover"
         >
           {isMobile ? (
             // X icon for mobile close
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           ) : (
             // Toggle icon for desktop
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
+            <svg
+              className="w-6 h-6 cursor-pointer"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                />
               )}
             </svg>
           )}
@@ -218,11 +246,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <li key={item.to}>
               <NavLink
                 to={item.to}
-                className={({ isActive }) => 
+                className={({ isActive }) =>
                   `flex items-center px-3 py-2 rounded-md transition-colors ${
-                    isActive 
-                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' 
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    isActive
+                      ? 'bg-notion-gray-light text-[#37352f] font-medium'
+                      : 'text-notion-text-default hover:bg-notion-hover'
                   } ${!isOpen && !isMobile ? 'justify-center' : ''}`
                 }
               >
@@ -238,20 +266,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* User section */}
       {(isOpen || isMobile) && authState.user && (
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center">
-            <div className="h-8 w-8 rounded-full bg-blue-500 text-white flex items-center justify-center">
-              {authState.user.name?.charAt(0) || "U"}
+        <div className="p-4 border-t border-notion-border">
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              `flex items-center rounded-md p-2 transition-colors hover:bg-notion-hover ${
+                isActive ? 'bg-notion-gray-light' : ''
+              }`
+            }
+          >
+            <div className="h-8 w-8 rounded-full bg-[#37352f] text-white flex items-center justify-center">
+              {authState.user.name?.charAt(0) || 'U'}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+              <p className="text-sm font-medium text-notion-text-default truncate">
                 {authState.user.name}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+              <p className="text-xs text-notion-text-gray truncate">
                 {authState.user.email}
               </p>
             </div>
-          </div>
+          </NavLink>
         </div>
       )}
     </aside>

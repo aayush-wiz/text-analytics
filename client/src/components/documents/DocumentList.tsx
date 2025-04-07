@@ -88,12 +88,12 @@ export const DocumentList: React.FC<DocumentListProps> = ({
         </CardHeader>
         <CardContent>
           <div className="animate-pulse">
-            <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+            <div className="h-10 bg-gray-200  rounded mb-4"></div>
             <div className="space-y-2">
               {[...Array(5)].map((_, index) => (
                 <div
                   key={index}
-                  className="h-16 bg-gray-100 dark:bg-gray-800 rounded"
+                  className="h-16 bg-gray-100  rounded"
                 ></div>
               ))}
             </div>
@@ -149,7 +149,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
 
         {sortedDocuments.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-gray-500 dark:text-gray-400 mb-4">
+            <p className="text-gray-500  mb-4">
               No documents found.
             </p>
             <Link to="/documents/new">
@@ -158,12 +158,12 @@ export const DocumentList: React.FC<DocumentListProps> = ({
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-800">
+            <table className="min-w-full divide-y divide-gray-200 ">
+              <thead className="bg-gray-50 ">
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500  uppercase tracking-wider cursor-pointer"
                     onClick={() => handleSort("title")}
                   >
                     <div className="flex items-center">
@@ -197,7 +197,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500  uppercase tracking-wider cursor-pointer"
                     onClick={() => handleSort("language")}
                   >
                     <div className="flex items-center">
@@ -231,7 +231,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500  uppercase tracking-wider cursor-pointer"
                     onClick={() => handleSort("updatedAt")}
                   >
                     <div className="flex items-center">
@@ -265,44 +265,44 @@ export const DocumentList: React.FC<DocumentListProps> = ({
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500  uppercase tracking-wider"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                    className="px-6 py-3 text-right text-xs font-medium text-gray-500  uppercase tracking-wider"
                   >
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="bg-white  divide-y divide-gray-200 ">
                 {sortedDocuments.map((document) => (
                   <tr key={document.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link
                         to={`/documents/${document.id}`}
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-blue-600  hover:underline"
                       >
                         {document.title}
                       </Link>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800  ">
                         {document.language}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
                       {formatDate(document.updatedAt)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {document.isAnalyzed ? (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800  ">
                           Analyzed
                         </span>
                       ) : (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800  ">
                           Not Analyzed
                         </span>
                       )}

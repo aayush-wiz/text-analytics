@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Button } from "../components/common/Button";
 import { Select } from "../components/common/Select";
+import { CustomSelect } from "../components/common/CustomSelect";
 import { Checkbox } from "../components/common/Checkbox";
 import { Alert } from "../components/common/Alert";
 import {
@@ -20,11 +21,17 @@ const SettingsPage: React.FC = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [languages, setLanguages] = useState<string[]>([]);
+
+  // Available languages
+  const availableLanguages = [
+    { value: "en", label: "English" },
+    { value: "de", label: "German" },
+    { value: "fr", label: "French" },
+    { value: "es", label: "Spanish" },
+  ];
 
   // Form state
   const [formData, setFormData] = useState<UserPreferences>({
-    theme: "system",
     language: "en",
     notificationsEnabled: true,
     defaultAnalysisOptions: {
@@ -37,17 +44,12 @@ const SettingsPage: React.FC = () => {
     },
   });
 
-  // Load user preferences and available languages
+  // Load user preferences
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoadingData(true);
-        // Load available languages
-        const languagesResponse = await modelService.getModelLanguages() as {
-          data: string[];
-        };
-        setLanguages(languagesResponse.data);
-
+        
         // Set form data from user preferences if user exists and has preferences
         const userPreferences = authState.user?.preferences;
         if (userPreferences) {
@@ -77,6 +79,10 @@ const SettingsPage: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleCustomSelectChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleAnalysisOptionToggle = (option: keyof AnalysisOptions) => {
     setFormData((prev) => ({
       ...prev,
@@ -87,14 +93,12 @@ const SettingsPage: React.FC = () => {
     }));
   };
 
-  const handleAnalysisLanguageChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleAnalysisLanguageChange = (value: string) => {
     setFormData((prev) => ({
       ...prev,
       defaultAnalysisOptions: {
         ...prev.defaultAnalysisOptions!,
-        language: e.target.value,
+        language: value,
       },
     }));
   };
@@ -119,25 +123,6 @@ const SettingsPage: React.FC = () => {
       };
       updateUser({ preferences: response.data });
       setSuccess("Settings updated successfully");
-
-      // Update theme in real-time
-      if (formData.theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else if (formData.theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        // System preference
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        if (prefersDark) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      }
-
-      localStorage.setItem("theme", formData.theme);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to update settings"
@@ -147,34 +132,13 @@ const SettingsPage: React.FC = () => {
     }
   };
 
-  // Generate language options for select
-  const languageOptions = languages.map((code) => {
-    const languageNames: Record<string, string> = {
-      en: "English",
-      es: "Spanish",
-      fr: "French",
-      de: "German",
-      it: "Italian",
-      pt: "Portuguese",
-      nl: "Dutch",
-      ru: "Russian",
-      zh: "Chinese",
-      ja: "Japanese",
-    };
-
-    return {
-      value: code,
-      label: languageNames[code] || code,
-    };
-  });
-
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-[#37352f]">
           Settings
         </h1>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-1 text-sm text-notion-text-gray">
           Customize your experience
         </p>
       </div>
@@ -195,12 +159,12 @@ const SettingsPage: React.FC = () => {
       {loadingData ? (
         <div className="flex justify-center py-6">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-gray-100 mx-auto"></div>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">Loading your preferences...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#37352f] mx-auto"></div>
+            <p className="mt-2 text-notion-text-gray">Loading your preferences...</p>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* General Settings */}
             <Card>
@@ -210,78 +174,25 @@ const SettingsPage: React.FC = () => {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Theme
+                    <label className="block text-sm font-medium text-[#37352f] mb-2">
+                      Interface Language
                     </label>
-                    <div className="space-y-2">
-                      <div className="flex items-center">
-                        <input
-                          type="radio"
-                          id="theme-light"
-                          name="theme"
-                          value="light"
-                          checked={formData.theme === "light"}
-                          onChange={handleChange}
-                          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                        />
-                        <label
-                          htmlFor="theme-light"
-                          className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-                        >
-                          Light
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          type="radio"
-                          id="theme-dark"
-                          name="theme"
-                          value="dark"
-                          checked={formData.theme === "dark"}
-                          onChange={handleChange}
-                          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                        />
-                        <label
-                          htmlFor="theme-dark"
-                          className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-                        >
-                          Dark
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          type="radio"
-                          id="theme-system"
-                          name="theme"
-                          value="system"
-                          checked={formData.theme === "system"}
-                          onChange={handleChange}
-                          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                        />
-                        <label
-                          htmlFor="theme-system"
-                          className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-                        >
-                          System Default
-                        </label>
-                      </div>
-                    </div>
+                    <CustomSelect
+                      options={availableLanguages}
+                      value={formData.language}
+                      onChange={(value) => handleCustomSelectChange("language", value)}
+                      fullWidth
+                    />
                   </div>
 
-                  <Select
-                    label="Language"
-                    name="language"
-                    options={languageOptions}
-                    value={formData.language}
-                    onChange={handleChange}
-                    fullWidth
-                  />
-
-                  <Checkbox
-                    label="Enable Notifications"
-                    checked={formData.notificationsEnabled}
-                    onChange={handleToggleNotifications}
-                  />
+                  <div className="mt-4">
+                    <Checkbox
+                      label="Enable Notifications"
+                      checked={formData.notificationsEnabled}
+                      onChange={handleToggleNotifications}
+                      className="text-[#37352f]"
+                    />
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -293,7 +204,7 @@ const SettingsPage: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <p className="text-sm text-notion-text-gray mb-2">
                     These options will be pre-selected when analyzing a new
                     document.
                   </p>
@@ -303,47 +214,61 @@ const SettingsPage: React.FC = () => {
                       label="Sentiment Analysis"
                       checked={formData.defaultAnalysisOptions?.sentiment}
                       onChange={() => handleAnalysisOptionToggle("sentiment")}
+                      className="text-[#37352f]"
                     />
 
                     <Checkbox
                       label="Keyword Extraction"
                       checked={formData.defaultAnalysisOptions?.keywords}
                       onChange={() => handleAnalysisOptionToggle("keywords")}
+                      className="text-[#37352f]"
                     />
 
                     <Checkbox
                       label="Named Entity Recognition"
                       checked={formData.defaultAnalysisOptions?.entities}
                       onChange={() => handleAnalysisOptionToggle("entities")}
+                      className="text-[#37352f]"
                     />
 
                     <Checkbox
                       label="Text Summarization"
                       checked={formData.defaultAnalysisOptions?.summary}
                       onChange={() => handleAnalysisOptionToggle("summary")}
+                      className="text-[#37352f]"
                     />
 
                     <Checkbox
                       label="Readability Metrics"
                       checked={formData.defaultAnalysisOptions?.readability}
                       onChange={() => handleAnalysisOptionToggle("readability")}
+                      className="text-[#37352f]"
                     />
                   </div>
 
-                  <Select
-                    label="Default Language"
-                    options={languageOptions}
-                    value={formData.defaultAnalysisOptions?.language || ""}
-                    onChange={handleAnalysisLanguageChange}
-                    fullWidth
-                  />
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-[#37352f] mb-2">
+                      Default Analysis Language
+                    </label>
+                    <CustomSelect
+                      options={availableLanguages}
+                      value={formData.defaultAnalysisOptions?.language || ""}
+                      onChange={handleAnalysisLanguageChange}
+                      fullWidth
+                    />
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
           <div className="mt-6">
-            <Button type="submit" variant="primary" isLoading={isLoading}>
+            <Button 
+              type="submit" 
+              variant="primary" 
+              isLoading={isLoading}
+              className="px-4 py-2"
+            >
               Save Settings
             </Button>
           </div>

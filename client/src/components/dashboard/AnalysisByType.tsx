@@ -46,7 +46,7 @@ export const AnalysisByType: React.FC<AnalysisByTypeProps> = ({
         </CardHeader>
         <CardContent>
           <div className="animate-pulse">
-            <div className="h-64 bg-gray-200 dark:bg-gray-700 rounded"></div>
+            <div className="h-64 bg-notion-gray-light rounded"></div>
           </div>
         </CardContent>
       </Card>
@@ -61,7 +61,7 @@ export const AnalysisByType: React.FC<AnalysisByTypeProps> = ({
       <CardContent>
         {data.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-notion-text-gray">
               No analysis data available yet.
             </p>
           </div>
@@ -71,12 +71,12 @@ export const AnalysisByType: React.FC<AnalysisByTypeProps> = ({
             <div className="flex flex-col space-y-2">
               {data.map((item) => (
                 <div key={item.type} className="flex items-center">
-                  <div className="w-32 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="w-32 text-sm text-notion-text-gray">
                     {item.type}
                   </div>
-                  <div className="flex-1 h-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="flex-1 h-4 bg-notion-gray-light rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-blue-500 rounded-full"
+                      className="h-full bg-[#37352f] rounded-full"
                       style={{
                         width: `${
                           (item.count / Math.max(...data.map((d) => d.count))) *
@@ -85,7 +85,7 @@ export const AnalysisByType: React.FC<AnalysisByTypeProps> = ({
                       }}
                     ></div>
                   </div>
-                  <div className="w-10 text-right text-sm font-medium text-gray-900 dark:text-white ml-2">
+                  <div className="w-10 text-right text-sm font-medium text-[#37352f] ml-2">
                     {item.count}
                   </div>
                 </div>

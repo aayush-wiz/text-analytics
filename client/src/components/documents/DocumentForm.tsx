@@ -185,7 +185,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({
             />
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700  mb-1">
                 Tags
               </label>
               <div className="flex">
@@ -211,7 +211,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({
                 {formData.tags?.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                    className="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 text-gray-800  "
                   >
                     {tag}
                     <button

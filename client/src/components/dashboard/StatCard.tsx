@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import { Card, CardContent } from "../common/Card";
-import { twMerge } from "tailwind-merge";
+import React, { ReactNode } from 'react';
+import { Card, CardContent } from '../common/Card';
+import { twMerge } from 'tailwind-merge';
 
 interface StatCardProps {
   title: string;
@@ -21,23 +21,19 @@ export const StatCard: React.FC<StatCardProps> = ({
   className,
 }) => {
   return (
-    <Card className={twMerge("h-full", className)}>
+    <Card className={twMerge('h-full', className)}>
       <CardContent className="h-full">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              {title}
-            </p>
-            <p className="mt-1 text-3xl font-semibold text-gray-900 dark:text-white">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <p className="text-sm font-medium text-notion-text-gray">{title}</p>
+            <p className="mt-1 text-3xl font-semibold text-[#37352f]">
               {value}
             </p>
             {change && (
               <p className="mt-2 flex items-center text-sm">
                 <span
                   className={
-                    change.isPositive
-                      ? "text-green-600 dark:text-green-400"
-                      : "text-red-600 dark:text-red-400"
+                    change.isPositive ? 'text-green-600' : 'text-red-600'
                   }
                 >
                   <span className="flex items-center">
@@ -75,14 +71,14 @@ export const StatCard: React.FC<StatCardProps> = ({
                     {Math.abs(change.value)}%
                   </span>
                 </span>
-                <span className="ml-2 text-gray-500 dark:text-gray-400">
+                <span className="ml-2 text-notion-text-gray">
                   from last period
                 </span>
               </p>
             )}
           </div>
           {icon && (
-            <div className="flex items-center justify-center w-12 h-12 rounded-md bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+            <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-md bg-notion-gray-light text-[#37352f]">
               {icon}
             </div>
           )}
