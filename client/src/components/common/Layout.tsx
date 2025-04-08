@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import { Navbar } from "./Navbar";
-import { Sidebar } from "./Sidebar";
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Navbar } from './Navbar';
+import { Sidebar } from './Sidebar';
 
 export const Layout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -24,8 +24,8 @@ export const Layout: React.FC = () => {
     };
 
     handleResize(); // Initial check
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggleSidebar = () => {
@@ -39,9 +39,9 @@ export const Layout: React.FC = () => {
   return (
     <div className="flex h-screen bg-notion-default overflow-hidden">
       {/* Desktop Sidebar */}
-      <div 
-        className={`hidden md:block transition-all duration-300 ${
-          sidebarOpen ? "w-64" : "w-14"
+      <div
+        className={`hidden md:block transition-all duration-300 ease-in-out overflow-hidden ${
+          sidebarOpen ? 'w-64' : 'w-14'
         }`}
       >
         <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
@@ -50,17 +50,24 @@ export const Layout: React.FC = () => {
       {/* Mobile Sidebar - shown as overlay */}
       {mobileSidebarOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50" onClick={toggleMobileSidebar}></div>
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-notion-default h-full border-r border-notion-border">
-            <Sidebar isOpen={true} onToggle={toggleMobileSidebar} isMobile={true} />
+          <div
+            className="fixed inset-0 bg-gray-600 bg-opacity-50 transition-opacity duration-300"
+            onClick={toggleMobileSidebar}
+          ></div>
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-notion-default h-full border-r border-notion-border transform transition-transform duration-300 ease-in-out">
+            <Sidebar
+              isOpen={true}
+              onToggle={toggleMobileSidebar}
+              isMobile={true}
+            />
           </div>
         </div>
       )}
 
       {/* Main Content */}
-      <div className="flex flex-col flex-1 w-0 overflow-hidden">
-        <Navbar 
-          onMenuClick={toggleMobileSidebar} 
+      <div className="flex flex-col flex-1 w-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <Navbar
+          onMenuClick={toggleMobileSidebar}
           isSidebarOpen={sidebarOpen}
           toggleSidebar={toggleSidebar}
         />

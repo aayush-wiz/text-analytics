@@ -185,14 +185,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {(isOpen || isMobile) && (
           <NavLink
             to="/dashboard"
-            className="text-xl font-bold text-[#37352f] hover:opacity-80 transition-opacity"
+            className="text-xl font-bold text-[#37352f] hover:opacity-80 transition-opacity overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out"
           >
             TextAnalytics
           </NavLink>
         )}
         <button
           onClick={onToggle}
-          className="p-1 rounded-md text-notion-text-gray hover:text-notion-text-default hover:bg-notion-hover"
+          className="p-1 rounded-md text-notion-text-gray hover:text-notion-text-default hover:bg-notion-hover transition-colors duration-200"
         >
           {isMobile ? (
             // X icon for mobile close
@@ -213,7 +213,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           ) : (
             // Toggle icon for desktop
             <svg
-              className="w-6 h-6 cursor-pointer"
+              className="w-6 h-6 cursor-pointer transition-transform duration-300 ease-in-out"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -247,16 +247,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <NavLink
                 to={item.to}
                 className={({ isActive }) =>
-                  `flex items-center px-3 py-2 rounded-md transition-colors ${
+                  `flex items-center px-3 py-2 rounded-md transition-colors duration-200 ${
                     isActive
                       ? 'bg-notion-gray-light text-[#37352f] font-medium'
                       : 'text-notion-text-default hover:bg-notion-hover'
                   } ${!isOpen && !isMobile ? 'justify-center' : ''}`
                 }
               >
-                <span className="flex-shrink-0">{item.icon}</span>
+                <span className="flex-shrink-0 transition-transform duration-200">{item.icon}</span>
                 {(isOpen || isMobile) && (
-                  <span className="ml-3 truncate">{item.name}</span>
+                  <span className="ml-3 truncate whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out">{item.name}</span>
                 )}
               </NavLink>
             </li>
@@ -266,11 +266,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* User section */}
       {(isOpen || isMobile) && authState.user && (
-        <div className="p-4 border-t border-notion-border">
+        <div className="p-4 border-t border-notion-border transition-opacity duration-300 ease-in-out">
           <NavLink
             to="/profile"
             className={({ isActive }) =>
-              `flex items-center rounded-md p-2 transition-colors hover:bg-notion-hover ${
+              `flex items-center rounded-md p-2 transition-colors duration-200 hover:bg-notion-hover ${
                 isActive ? 'bg-notion-gray-light' : ''
               }`
             }
@@ -278,7 +278,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="h-8 w-8 rounded-full bg-[#37352f] text-white flex items-center justify-center">
               {authState.user.name?.charAt(0) || 'U'}
             </div>
-            <div className="ml-3">
+            <div className="ml-3 overflow-hidden">
               <p className="text-sm font-medium text-notion-text-default truncate">
                 {authState.user.name}
               </p>

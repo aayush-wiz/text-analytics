@@ -5,10 +5,14 @@ import { Dropdown, DropdownItem, DropdownDivider } from "./Dropdown";
 
 interface NavbarProps {
   onMenuClick: () => void;
+  isSidebarOpen?: boolean;
+  toggleSidebar?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  onMenuClick
+  onMenuClick,
+  isSidebarOpen,
+  toggleSidebar
 }) => {
   const { authState, logout } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
