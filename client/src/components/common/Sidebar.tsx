@@ -83,7 +83,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       name: 'Analysis',
-      to: '/analysis',
+      to: '/documents?filter=analysis',
       icon: (
         <svg
           className="w-6 h-6"

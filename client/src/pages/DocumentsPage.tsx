@@ -4,13 +4,16 @@ import { TextDocument } from "../types";
 import { textService } from "../services/api";
 import { Alert } from "../components/common/Alert";
 import { PageHeader } from "../components/common/Card";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "../components/common/Button";
 
 const DocumentsPage: React.FC = () => {
   const [documents, setDocuments] = useState<TextDocument[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const filter = searchParams.get('filter');
 
   const fetchDocuments = async () => {
     try {
@@ -44,11 +47,31 @@ const DocumentsPage: React.FC = () => {
     }
   };
 
+  // Filter documents if needed
+  const filteredDocuments = filter === 'analysis' 
+    ? documents.filter(doc => !doc.isAnalyzed)
+    : documents;
+    
+  // Get page title and description based on filter
+  const getPageTitle = () => {
+    if (filter === 'analysis') {
+      return "Documents For Analysis";
+    }
+    return "Documents";
+  };
+  
+  const getPageDescription = () => {
+    if (filter === 'analysis') {
+      return "Select a document to analyze";
+    }
+    return "Manage and analyze your text documents";
+  };
+
   return (
     <div className="space-y-4">
       <PageHeader 
-        title="Documents" 
-        description="Manage and analyze your text documents"
+        title={getPageTitle()} 
+        description={getPageDescription()}
       >
         <Link to="/documents/new">
           <Button variant="primary" size="sm">
@@ -78,7 +101,7 @@ const DocumentsPage: React.FC = () => {
       )}
 
       <DocumentList
-        documents={documents}
+        documents={filteredDocuments}
         isLoading={isLoading}
         onDelete={handleDelete}
       />
